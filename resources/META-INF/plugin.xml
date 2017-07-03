@@ -1,0 +1,36 @@
+<idea-plugin>
+    <id>io.github.voleye.intellij.magento2plugin</id>
+    <name>Magento PhpStorm</name>
+    <version>2.2.0</version>
+    <vendor email="vklymenko@outlook.com" url="http://github.com/voleye">Volodymyr Klymenko</vendor>
+
+    <description><![CDATA[
+        Magento PhpStorm plugin supports Magento2<br>
+        Plugin provides PHP class reference from any XML file (*.xml)<br>
+    ]]></description>
+
+    <change-notes><![CDATA[
+
+        2.2.0: Initial commit<br/>
+
+    ]]>
+    </change-notes>
+
+    <!-- please see http://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/build_number_ranges.html for description -->
+    <idea-version since-build="171.4"/>
+
+    <!-- please see http://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/plugin_compatibility.html
+       on how to target different products -->
+    <!-- uncomment to enable plugin in all products
+    <depends>com.intellij.modules.lang</depends>
+    -->
+
+    <depends>com.jetbrains.php</depends>
+    <depends>com.intellij.modules.platform</depends>
+
+    <extensions defaultExtensionNs="com.intellij">
+        <fileBasedIndex implementation="io.github.voleye.intellij.magento2plugin.index.VirtualTypeIndexExtension"/>
+        <psi.referenceContributor implementation="io.github.voleye.intellij.magento2plugin.XmlReferenceContributor"/>
+    </extensions>
+
+</idea-plugin>
