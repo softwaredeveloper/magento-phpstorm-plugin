@@ -1,4 +1,4 @@
-package io.github.voleye.intellij.magento2plugin.index;
+package io.github.voleye.intellij.magento2plugin.index.extension;
 
 import com.intellij.ide.highlighter.XmlFileType;
 import com.intellij.psi.PsiFile;
@@ -13,40 +13,36 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.Map;
 
-public class VirtualTypeIndexExtension extends FileBasedIndexExtension<String, Void> {
+public class PluginIndexExtension extends FileBasedIndexExtension<String, Void> {
 
     public static final ID<String, Void> KEY = ID.create(
-            "io.github.voleye.intellij.magento2plugin.xml.di.virtual.type.name");
+            "io.github.voleye.intellij.magento2plugin.xml.di.plugin");
     private final KeyDescriptor<String> myKeyDescriptor = new EnumeratorStringDescriptor();
 
     @NotNull
     @Override
     public DataIndexer<String, Void, FileContent> getIndexer() {
-        return new DataIndexer<String, Void, FileContent>() {
-            @NotNull
-            public Map<String, Void> map(@NotNull FileContent inputData) {
-                Map<String, Void> map = new THashMap();
-                PsiFile psiFile = inputData.getPsiFile();
+        return inputData ->  {
+            Map<String, Void> map = new THashMap<>();
+            PsiFile psiFile = inputData.getPsiFile();
 
-                if (inputData.getFile().getName().equals("di.xml") && psiFile instanceof XmlFile) {
-                    XmlDocument xmlDocument = ((XmlFile) psiFile).getDocument();
-                    if (xmlDocument != null) {
-                        XmlTag xmlRootTag = xmlDocument.getRootTag();
-                        if (xmlRootTag != null) {
-                            for (XmlTag virtualTypeTag : xmlRootTag.findSubTags("virtualType")) {
-                                XmlAttribute xmlAttribute = virtualTypeTag.getAttribute("name");
-                                if (xmlAttribute != null) {
-                                    XmlAttributeValue valueElement = xmlAttribute.getValueElement();
-                                    if (valueElement != null) {
-                                        map.put(valueElement.getValue(), null);
-                                    }
+            if (inputData.getFile().getName().equals("di.xml") && psiFile instanceof XmlFile) {
+                XmlDocument xmlDocument = ((XmlFile) psiFile).getDocument();
+                if (xmlDocument != null) {
+                    XmlTag xmlRootTag = xmlDocument.getRootTag();
+                    if (xmlRootTag != null) {
+                        for (XmlTag typeTag : xmlRootTag.findSubTags("type")) {
+                            if (typeTag.findSubTags("plugin").length > 0) {
+                                String typeName = typeTag.getAttributeValue("name");
+                                if (typeName != null && !typeName.isEmpty()) {
+                                    map.put(typeName, null);
                                 }
                             }
                         }
                     }
                 }
-                return map;
             }
+            return map;
         };
     }
 

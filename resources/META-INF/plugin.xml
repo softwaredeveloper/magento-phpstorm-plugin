@@ -1,17 +1,31 @@
 <idea-plugin>
     <id>io.github.voleye.intellij.magento2plugin</id>
     <name>Magento PhpStorm</name>
-    <version>2.2.0</version>
+    <version>2.2.1</version>
     <vendor email="vklymenko@outlook.com" url="http://github.com/voleye">Volodymyr Klymenko</vendor>
 
     <description><![CDATA[
-        Magento PhpStorm plugin supports Magento2<br>
-        Plugin provides PHP class reference from any XML file (*.xml)<br>
+        Magento PhpStorm Plugin supports Magento2<br>
+
+        <br>
+
+        Features:<br>
+         - Provides PHP class reference from XML file (*.xml)<br>
+         - Supports of navigation from PHP class/interface to plugins XML declaration<br>
     ]]></description>
 
     <change-notes><![CDATA[
 
+        2.2.1: Magento plugins support<br/>
         2.2.0: Initial commit<br/>
+
+        <br/>
+
+<h2>2.2.1</h2>
+<ul>
+    <li>Add support of navigation from PHP class/interface to plugins XML declaration <a href="https://github.com/voleye/magento-phpstorm-plugin/issues/1">#1</a></li>
+    <li>Code style improvements</li>
+</ul>
 
     ]]>
     </change-notes>
@@ -29,7 +43,11 @@
     <depends>com.intellij.modules.platform</depends>
 
     <extensions defaultExtensionNs="com.intellij">
-        <fileBasedIndex implementation="io.github.voleye.intellij.magento2plugin.index.VirtualTypeIndexExtension"/>
+        <fileBasedIndex implementation="io.github.voleye.intellij.magento2plugin.index.extension.VirtualTypeIndexExtension"/>
+        <fileBasedIndex implementation="io.github.voleye.intellij.magento2plugin.index.extension.PluginIndexExtension"/>
+
+        <codeInsight.lineMarkerProvider language="PHP" implementationClass="io.github.voleye.intellij.magento2plugin.PluginLineMarkerProvider"/>
+
         <psi.referenceContributor implementation="io.github.voleye.intellij.magento2plugin.XmlReferenceContributor"/>
     </extensions>
 

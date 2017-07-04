@@ -38,18 +38,18 @@ public class XmlPolyVariantReference extends PsiPolyVariantReferenceBase<PsiElem
 
         classFQN = classFQN.startsWith("\\") ? classFQN.substring(1) : classFQN;
 
-        // file php class
+        // find php classes
         for (PhpClass phpClass : phpIndex.getClassesByFQN(classFQN)) {
             results.add(new PsiElementResolveResult(phpClass));
         }
 
-        // find php interface
+        // find php interfaces
         for (PhpClass phpClass : phpIndex.getInterfacesByFQN(classFQN)) {
             results.add(new PsiElementResolveResult(phpClass));
         }
 
-        // find virtual type name
-        for (XmlAttributeValue virtualTypeName : virtualTypeIndex.getNames(classFQN)) {
+        // find virtual type names
+        for (XmlAttributeValue virtualTypeName : virtualTypeIndex.getElements(classFQN)) {
             results.add(new PsiElementResolveResult(virtualTypeName));
         }
 
