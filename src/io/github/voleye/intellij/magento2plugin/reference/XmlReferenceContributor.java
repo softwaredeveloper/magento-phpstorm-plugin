@@ -13,7 +13,7 @@ public class XmlReferenceContributor extends PsiReferenceContributor {
     /**
      * according to http://php.net/manual/en/language.oop5.basic.php
      */
-    private static final String PHP_CLASS_NAME_REGEX = "\\\\?[A-Z_\\x7f-\\xff][a-zA-Z0-9_\\x7f-\\xff]*(\\\\[A-Z_\\x7f-\\xff][a-zA-Z0-9_\\x7f-\\xff]*)*(::[a-zA-Z_\\x7f-\\xff][a-zA-Z0-9_\\x7f-\\xff]*)?";
+    private static final String PHP_ELEMENT_REGEX = "\\\\?[A-Z_\\x7f-\\xff][a-zA-Z0-9_\\x7f-\\xff]*(\\\\[A-Z_\\x7f-\\xff][a-zA-Z0-9_\\x7f-\\xff]*)+(::[a-zA-Z_\\x7f-\\xff][a-zA-Z0-9_\\x7f-\\xff]*)?";
 
     @Override
     public void registerReferenceProviders(@NotNull PsiReferenceRegistrar registrar) {
@@ -21,7 +21,7 @@ public class XmlReferenceContributor extends PsiReferenceContributor {
         // <someXmlTag someAttribute="Some\Php\ClassName" />
         registrar.registerReferenceProvider(
             XmlPatterns.xmlAttributeValue()
-                .withValue(string().matches(PHP_CLASS_NAME_REGEX))
+                .withValue(string().matches(PHP_ELEMENT_REGEX))
                 .inFile(xmlFile().withName(string().endsWith(".xml"))),
             new CompositeReferenceProvider()
         );
@@ -30,7 +30,7 @@ public class XmlReferenceContributor extends PsiReferenceContributor {
         registrar.registerReferenceProvider(
             XmlPatterns
                 .psiElement(XmlTokenType.XML_DATA_CHARACTERS)
-                .withText(string().matches(PHP_CLASS_NAME_REGEX))
+                .withText(string().matches(PHP_ELEMENT_REGEX))
                 .inFile(xmlFile().withName(string().endsWith(".xml"))),
             new CompositeReferenceProvider()
         );
