@@ -1,3 +1,8 @@
+2.2.2
+=============
+* Features:
+    * Add support of navigation to PHP class constants <a href="https://github.com/voleye/magento-phpstorm-plugin/issues/2">#2</a>
+
 2.2.1
 =============
 * Features:

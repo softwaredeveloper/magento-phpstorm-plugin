@@ -1,7 +1,7 @@
 <idea-plugin>
     <id>io.github.voleye.intellij.magento2plugin</id>
     <name>Magento PhpStorm</name>
-    <version>2.2.1</version>
+    <version>2.2.2</version>
     <vendor email="vklymenko@outlook.com" url="http://github.com/voleye">Volodymyr Klymenko</vendor>
 
     <description><![CDATA[
@@ -10,12 +10,13 @@
         <br>
 
         Features:<br>
-         - Provides PHP class reference from XML file (*.xml)<br>
-         - Supports navigation from PHP class to plugins XML declaration<br>
+         - PHP class reference from XML file (*.xml)<br>
+         - Navigation from PHP class to Plugins<br>
     ]]></description>
 
     <change-notes><![CDATA[
 
+        2.2.2: XML references improvements<br />
         2.2.1: Magento plugins support<br />
         2.2.0: Initial commit<br />
 
