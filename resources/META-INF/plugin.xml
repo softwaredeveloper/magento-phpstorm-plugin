@@ -45,7 +45,7 @@
 
         <codeInsight.lineMarkerProvider language="PHP" implementationClass="io.github.voleye.intellij.magento2plugin.PluginLineMarkerProvider"/>
 
-        <psi.referenceContributor implementation="io.github.voleye.intellij.magento2plugin.XmlReferenceContributor"/>
+        <psi.referenceContributor implementation="io.github.voleye.intellij.magento2plugin.reference.XmlReferenceContributor"/>
     </extensions>
 
 </idea-plugin>
