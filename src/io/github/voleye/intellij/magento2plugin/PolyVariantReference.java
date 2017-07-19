@@ -2,17 +2,13 @@ package io.github.voleye.intellij.magento2plugin;
 
 import com.intellij.openapi.util.TextRange;
 import com.intellij.psi.*;
-import com.intellij.util.IncorrectOperationException;
-import com.jetbrains.php.lang.psi.elements.ClassReference;
-import com.jetbrains.php.lang.psi.elements.impl.ClassReferenceImpl;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 
-public class PhpPolyVariantReference extends PsiPolyVariantReferenceBase<PsiElement> {
+public class PolyVariantReference extends PsiPolyVariantReferenceBase<PsiElement> {
 
     /**
      * Target elements
@@ -24,7 +20,7 @@ public class PhpPolyVariantReference extends PsiPolyVariantReferenceBase<PsiElem
      *
      * @param element PsiElement
      */
-    public PhpPolyVariantReference(PsiElement element, TextRange range, Collection<? extends PsiElement> targets) {
+    public PolyVariantReference(PsiElement element, TextRange range, Collection<? extends PsiElement> targets) {
         super(element, range);
         this.targets = targets;
     }

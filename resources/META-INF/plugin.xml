@@ -27,7 +27,7 @@
     <depends>com.intellij.modules.platform</depends>
 
     <extensions defaultExtensionNs="com.intellij">
-        <renamePsiElementProcessor implementation="io.github.voleye.intellij.magento2plugin.MyRenameProcessor" />
+        <renamePsiElementProcessor implementation="io.github.voleye.intellij.magento2plugin.RenameProcessor" />
         <dom.fileDescription implementation="io.github.voleye.intellij.magento2plugin.DomDescription" />
     </extensions>
 

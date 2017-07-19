@@ -7,8 +7,8 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.Map;
 
-public class MyRenameProcessor extends RenamePsiElementProcessor {
-    MyRenameProcessor() {
+public class RenameProcessor extends RenamePsiElementProcessor {
+    RenameProcessor() {
 
     }
 

@@ -3,7 +3,6 @@ package io.github.voleye.intellij.magento2plugin;
 import com.intellij.openapi.util.TextRange;
 import com.intellij.psi.PsiElement;
 import com.intellij.psi.PsiReference;
-import com.intellij.psi.stubs.StubIndex;
 import com.intellij.psi.xml.XmlAttributeValue;
 import com.intellij.util.xml.*;
 import com.jetbrains.php.PhpIndex;
@@ -12,11 +11,10 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.Collection;
-import java.util.Collections;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class MyConverter extends ResolvingConverter<XmlAttributeValue> implements CustomReferenceConverter {
+public class Converter extends ResolvingConverter<XmlAttributeValue> implements CustomReferenceConverter {
     private static final String PHP_CLASS_NAME_REGEX = "[A-Z_\\x7f-\\xff][a-zA-Z0-9_\\x7f-\\xff]*(\\\\[A-Z_\\x7f-\\xff][a-zA-Z0-9_\\x7f-\\xff]*)*";
 
     @Nullable
@@ -89,7 +87,7 @@ public class MyConverter extends ResolvingConverter<XmlAttributeValue> implement
                     origValue.lastIndexOf(className),
                     origValue.lastIndexOf(className) + className.length()
             );
-            return new PsiReference[] {new PhpPolyVariantReference(element, range, phpClasses)};
+            return new PsiReference[] {new PolyVariantReference(element, range, phpClasses)};
         }
 
         return new PsiReference[0];
