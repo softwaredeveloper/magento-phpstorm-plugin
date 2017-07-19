@@ -6,24 +6,10 @@
 
     <description><![CDATA[
         Magento PhpStorm Plugin supports Magento2<br>
-
-        <br>
-
-        Features:<br>
-         - PHP class reference from XML file (*.xml)<br>
-         - Navigation from PHP class to Plugins<br>
     ]]></description>
 
     <change-notes><![CDATA[
 
-        2.2.2: XML references improvements<br />
-        2.2.1: Magento plugins support<br />
-        2.2.0: Initial commit<br />
-
-        <br />
-
-        <a href="https://github.com/voleye/magento-phpstorm-plugin/blob/develop/CHANGELOG.md">Detailed changelog</a>
-        <br />
 
     ]]>
     </change-notes>
@@ -41,12 +27,8 @@
     <depends>com.intellij.modules.platform</depends>
 
     <extensions defaultExtensionNs="com.intellij">
-        <fileBasedIndex implementation="io.github.voleye.intellij.magento2plugin.index.extension.VirtualTypeIndexExtension"/>
-        <fileBasedIndex implementation="io.github.voleye.intellij.magento2plugin.index.extension.PluginIndexExtension"/>
-
-        <codeInsight.lineMarkerProvider language="PHP" implementationClass="io.github.voleye.intellij.magento2plugin.PluginLineMarkerProvider"/>
-
-        <psi.referenceContributor implementation="io.github.voleye.intellij.magento2plugin.reference.XmlReferenceContributor"/>
+        <renamePsiElementProcessor implementation="io.github.voleye.intellij.magento2plugin.MyRenameProcessor" />
+        <dom.fileDescription implementation="io.github.voleye.intellij.magento2plugin.DomDescription" />
     </extensions>
 
 </idea-plugin>
